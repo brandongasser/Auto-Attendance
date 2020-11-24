@@ -13,15 +13,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AutoAttendanceWeb {
 
-	// URL to classwork tab of attendance classroom page in parenthesis
-	private static String CLASSROOM_URL = "https://classroom.google.com/w/MTkwNzg3MzA1NTE3/t/all";
-	// your school email inside parenthesis
+	private static final String CLASSROOM_URL = "https://classroom.google.com/w/MTkwNzg3MzA1NTE3/t/all";
+	private static final String EMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
+	
 	private static String EMAIL = "819814@mystma.org";
-	// your school password inside parenthesis
 	private static String PASSWORD = "312Bg110!";
-	// your first name inside parenthesis
 	private static String FIRST_NAME = "Brandon";
-	// your last name inside parenthesis
 	private static String LAST_NAME = "Gasser";
 
 	private static WebDriver driver;
@@ -35,7 +32,37 @@ public class AutoAttendanceWeb {
 		driver = new ChromeDriver(options);
 
 		runCode();
+		// runEmailTest();
 
+	}
+
+	private static void runEmailTest() throws Exception {
+		System.out.println("Email test starting...");
+		driver.navigate().to(EMAIL_URL);
+		WebElement email = new WebDriverWait(driver, 15)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='email']")));
+		email.sendKeys(EMAIL);
+		email.sendKeys(Keys.RETURN);
+		WebElement password = new WebDriverWait(driver, 15)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='password']")));
+		password.sendKeys(PASSWORD);
+		password.sendKeys(Keys.RETURN);
+		new WebDriverWait(driver, 15)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Compose']"))).click();
+		new WebDriverWait(driver, 15)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("/descendant::textarea[1]"))).sendKeys(EMAIL);
+		new WebDriverWait(driver, 15)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='subjectbox']")))
+				.sendKeys("Auto Attendance Confirmation "
+						+ new SimpleDateFormat("MMMM dd").format(Calendar.getInstance().getTime()));
+		new WebDriverWait(driver, 15)
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@aria-label='Message Body']")))
+				.sendKeys("Auto Attendance finished successfully at "
+						+ new SimpleDateFormat("hh:mm:ss MMMM dd").format(Calendar.getInstance().getTime()));
+		new WebDriverWait(driver, 15).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Send']")))
+				.click();
+		Thread.sleep(15000);
+		driver.close();
 	}
 
 	private static void runCode() throws Exception {
@@ -96,7 +123,7 @@ public class AutoAttendanceWeb {
 				.click();
 
 		// confirmation email
-		driver.navigate().to("https://mail.google.com/mail/u/0/#inbox");
+		driver.navigate().to(EMAIL_URL);
 		new WebDriverWait(driver, 15)
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[text()='Compose']"))).click();
 		new WebDriverWait(driver, 15)
