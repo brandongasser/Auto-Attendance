@@ -15,11 +15,11 @@ public class AutoAttendanceWeb {
 
 	private static final String CLASSROOM_URL = "https://classroom.google.com/w/MTkwNzg3MzA1NTE3/t/all";
 	private static final String EMAIL_URL = "https://mail.google.com/mail/u/0/#inbox";
-	
-	private static String EMAIL = "819814@mystma.org";
-	private static String PASSWORD = "312Bg110!";
-	private static String FIRST_NAME = "Brandon";
-	private static String LAST_NAME = "Gasser";
+
+	private static String EMAIL;
+	private static String PASSWORD;
+	private static String FIRST_NAME;
+	private static String LAST_NAME;
 
 	private static WebDriver driver;
 
@@ -30,6 +30,11 @@ public class AutoAttendanceWeb {
 		options.addArguments("--disable-gpu");
 
 		driver = new ChromeDriver(options);
+
+		EMAIL = args[0];
+		PASSWORD = args[1];
+		FIRST_NAME = args[2];
+		LAST_NAME = args[3];
 
 		runCode();
 		// runEmailTest();
