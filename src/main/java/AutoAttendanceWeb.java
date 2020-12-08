@@ -77,13 +77,13 @@ public class AutoAttendanceWeb {
 		try {
 			new WebDriverWait(driver, 15)
 					.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(), '"
-							+ new SimpleDateFormat("MMMM dd").format(Calendar.getInstance().getTime()) + "')]")));
+							+ new SimpleDateFormat("EEEE, MMMM dd").format(Calendar.getInstance().getTime()) + "')]")));
 					attendanceToday = true;
 		} catch (Exception e) {
 			try {
 				new WebDriverWait(driver, 15)
 					.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(), '"
-							+ new SimpleDateFormat("MMMM d").format(Calendar.getInstance().getTime()) + "')]")));
+							+ new SimpleDateFormat("EEEE, MMMM d").format(Calendar.getInstance().getTime()) + "')]")));
 					attendanceToday = true;
 			} catch (Exception f) {
 				attendanceToday = false;
