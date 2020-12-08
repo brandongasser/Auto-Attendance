@@ -30,8 +30,8 @@ public class AutoAttendanceWeb {
 	public static void main(String[] args) throws Exception {
 
 		ChromeOptions options = new ChromeOptions();
-		// options.setHeadless(true);
-		// options.addArguments("--disable-gpu");
+		options.setHeadless(true);
+		options.addArguments("--disable-gpu");
 
 		driver = new ChromeDriver(options);
 
