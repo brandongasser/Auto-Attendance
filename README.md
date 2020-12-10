@@ -23,7 +23,7 @@ Will only work on Windows systems
 1) Check Monday through Friday and press ok
 1) In actions tab, press new
 1) In first box, copy path to java.exe
-1) In second box, type -Dwebdriver.chrome.driver"path to chrome driver" -jar "path to Auto Attendance Web-all.jar" [school email] [school password] [first name] [last name]
+1) In second box, type -Dwebdriver.chrome.driver"path to chrome driver" -jar "path to Auto Attendance Web-all.jar" [school email] [school password] [first name] [last name] [grade #]
 1) Press ok
 1) In conditions tab and under power, uncheck the first two boxes and check the third box
 1) Press ok and enter admin password
